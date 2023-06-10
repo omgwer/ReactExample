@@ -1,17 +1,19 @@
-import {useProducts} from "./hooks/products";
-import {Product} from "./components/Product";
-import {Loader} from "./components/Loader";
-import {ErrorMessage} from "./components/ErrorMessage";
+import {Route, Routes} from "react-router-dom";
+import {ProductsPage} from "./pages/ProductsPage";
+import {AboutPage} from "./pages/AboutPage";
+import {Navigation} from "./components/Navigation";
+
 
 function App() {
-    const {loading, error, products} = useProducts();
-
     return (
-        <div className="container mx-auto max-w-2xl pt-5">
-            {loading &&  <Loader />}
-            {error && <ErrorMessage error={error} />}
-            {products.map(product => <Product product={product} key={product.id}/>) }
-        </div>
+        <>
+            <Navigation/>
+            <Routes>
+                <Route path="/" element={ <ProductsPage/>} />
+                <Route path="/about" element={ <AboutPage/>} />
+            </Routes>
+        </>
+
     )
 }
 
